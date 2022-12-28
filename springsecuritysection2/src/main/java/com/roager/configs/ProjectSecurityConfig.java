@@ -1,4 +1,4 @@
-package com.roager.config;
+package com.roager.configs;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
