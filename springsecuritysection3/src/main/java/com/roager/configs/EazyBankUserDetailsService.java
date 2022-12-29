@@ -15,20 +15,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class EazyBankUserDetails implements UserDetailsService {
+public class EazyBankUserDetailsService implements UserDetailsService {
 
     @Autowired
     private CustomerRepository customerRepository;
 
     @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        String username, password = null;
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        String userName, password = null;
         List<GrantedAuthority> authorities = null;
-        List<Customer> customer = customerRepository.findByEmail(email);
+        List<Customer> customer = customerRepository.findByEmail(username);
         if (customer.size() == 0) {
-            throw new UsernameNotFoundException("User details not found for the user : " + email);
+            throw new UsernameNotFoundException("User details not found for the user : " + username);
         } else{
-            username = customer.get(0).getEmail();
+            userName = customer.get(0).getEmail();
             password = customer.get(0).getPwd();
             authorities = new ArrayList<>();
             authorities.add(new SimpleGrantedAuthority(customer.get(0).getRole()));

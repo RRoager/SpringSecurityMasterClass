@@ -18,7 +18,7 @@ public class LoginController {
     @PostMapping("/register")
     public ResponseEntity<String> registerUser(@RequestBody Customer customer) {
         Customer savedCustomer = null;
-        ResponseEntity<String> response = null;
+        ResponseEntity response = null;
         try {
             savedCustomer = customerRepository.save(customer);
             if (savedCustomer.getId() > 0) {
