@@ -1,11 +1,13 @@
 package com.roager.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.sql.Date;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -27,4 +29,7 @@ public class Customer {
     private String role;
     @Column(name = "create_dt")
     private Date createDt;
+    @JsonIgnore
+    @OneToMany(mappedBy="customer",fetch=FetchType.EAGER)
+    private Set<Authority> authorities;
 }
